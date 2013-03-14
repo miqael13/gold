@@ -59,6 +59,8 @@ CREATE TABLE `jeverlies` (
   `price` int(11) DEFAULT NULL,
   `type` enum('BIJOU','WHITE','GOLDEN') DEFAULT NULL,
   `sex` enum('MEN','WOMEN') DEFAULT NULL,
+  `pic1` varchar(255) DEFAULT NULL,
+  `pic2` varchar(255) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modefied` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)

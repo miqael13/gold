@@ -13,6 +13,9 @@ var $components = array('Session','Paginator');
     public function index(){
         
     }
+    public function pic(){
+        $this->layout = false;
+    }
  
 
 }

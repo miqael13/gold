@@ -120,8 +120,8 @@
                         <div class="item_hover">
                             <header>         
                                 <hgroup>
-                                    <h2>MY LAST VACTION.</h2>
-                                    <h3>Holiday</h3>
+                                    <h2> цена $273</h2>
+                                    <h3> вес 17.5гр</h3>
                                 </hgroup>
                             </header>
                         </div>

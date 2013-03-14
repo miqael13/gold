@@ -1,6 +1,6 @@
 <div id="sidebar">
     <header class="logo">
-        <h1><a href="portfolio.html"><img src="images/logo.png" alt="FALLEN ANGEL." /></a></h1>
+        <h1><a href="/"><img src="images/logo.png" alt="MyGold.am" /></a></h1>
     </header>
 
     <aside class="social phone">
@@ -21,8 +21,8 @@
         <h4>Filter.</h4>
         <ul>
             <li class="filter_on"><a href="#" data-filter="*">show all</a></li>
-            <li><a href="#" data-filter=".photography">Photography</a></li>
-            <li><a href="#" data-filter=".webdesign">Webdesign</a></li>
+            <li><a href="#" data-filter=".holiday">Photography</a></li>
+            <li><a href="#" data-filter=".holiday">Webdesign</a></li>
             <li><a href="#" data-filter=".holiday">Holiday</a></li>
         </ul>
     </section>
@@ -39,10 +39,5 @@
         </ul>
     </aside>
     <!-- end .desktop -->
-
-    <footer id="footer">
-        <p><span><span class="fallenbold">Fallen</span>Angel</span> - Copyright 2012</p>
-    </footer>
-
 </div>
 <!-- end #sidebar -->

@@ -1,0 +1,108 @@
+/* ==========================================================================
+   Table of Contents Tablet Media Queries
+   ==========================================================================
+	
+	* Disable style
+	
+	* Sidebar
+	
+		** Logo
+		** Main navigation
+		** Social
+		** Search
+		
+	* Wrap or/and Content
+	
+		** Our Team
+		** Slider
+				
+  ==========================================================================*/
+
+
+/* ==========================================================================
+   Disable style
+   ========================================================================== */
+ 
+aside.desktop, #footer {
+	display: none;
+}
+
+/* ==========================================================================
+   Sidebar
+   ========================================================================== */
+
+/*
+ * Logo
+ */
+
+header.logo {
+	margin-top: 40px;
+}
+		
+/*
+ * Main navigation
+ */
+
+#main_menu {
+	margin: 20px 0;
+}
+
+#main_menu select {
+	display: none;
+}
+
+/*
+ * Social
+ */
+
+aside.phone {
+	position: relative;
+	width: 100%;
+}
+
+aside.phone ul {
+	text-align: center;
+	width: 100%;
+}
+
+aside.phone ul li {
+	display: inline-block;
+	float: none;
+	margin: 0px 7px 10px 0px;
+}
+
+aside.phone ul img {
+	width: 25px;
+	height: 25px;
+	margin: 0 5px;
+}
+
+/*
+ * Search
+ */
+ 
+#search {
+	margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Wrap and/or Content
+   ========================================================================== */
+   
+/*
+ * Our Team
+ */
+
+.page_our_team > div {
+	position: relative;
+	left: 5%;
+	width: 95%;	
+}
+
+/*
+ * Slider 
+ */
+
+.slidebutton {	
+	float: left;
+}

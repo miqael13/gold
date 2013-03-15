@@ -28,9 +28,11 @@ CREATE TABLE `admins` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `admins` */
+
+insert  into `admins`(`id`,`name`,`login`,`password`,`created`,`modified`) values (1,'Miqael','Miqael','likmuf13',NULL,NULL);
 
 /*Table structure for table `categories` */
 
@@ -76,6 +78,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `firstName` varchar(255) DEFAULT NULL,
   `lastName` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
   `phone` int(11) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `pavilion` varchar(255) DEFAULT NULL,

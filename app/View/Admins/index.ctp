@@ -1,1 +1,1 @@
-Bari or apo
+<?php echo $this->element('admins_menu'); ?>

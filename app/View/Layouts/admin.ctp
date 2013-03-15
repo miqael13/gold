@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="/css/jquery.jgrowl.css">
         <script src="/js/plugins/jquery-1.8.0.min.js"></script>
         <script src="/js/jquery.jgrowl.js"></script>
+        <script src="/js/jquery.validate.js"></script>
+
     </head>
 
     <body>        

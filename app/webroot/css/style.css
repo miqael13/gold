@@ -298,7 +298,7 @@ html, body {
     -moz-transition: border linear .2s, box-shadow linear .2s;
     -o-transition: border linear .2s, box-shadow linear .2s;
     transition: border linear .2s, box-shadow linear .2s;
-    padding: 5px 0px 10px 0px;
+    padding: 5px 0px 10px 7px;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -306,7 +306,7 @@ html, body {
     -khtml-border-radius: 4px;
 }
 .calendarPopup .modal-body {
-    max-height: 405px;
+    max-height: 420px;
 }
 .calendarPopup .form {
     margin-bottom: 0;
@@ -326,6 +326,7 @@ html, body {
 }
 .channelsGroup .controls {
     max-width: 80%;
+    min-width: 274px;
 }
 .withLegend fieldset legend {
     background: white;
@@ -380,7 +381,7 @@ html, body {
     font-weight: bold;
 }
 .topSrchStyle {
-    overflow: hidden;
+    overflow: visible;
 }
 .topSrchStyle .text , .topSrchStyle .submit {
     float: left;
@@ -391,8 +392,8 @@ html, body {
 }
 .topSrchStyle .submit input[type="submit"] , .withSrchBtn .submit input[type="submit"] {
     background: url('../img/srch_icon.png') no-repeat center;
-    height: 27px;
-    width: 35px;
+    height: 23px;
+    width: 28px;
     border: 0;
     box-shadow: none;
     -webkit-box-shadow: none;
@@ -401,6 +402,7 @@ html, body {
     color: transparent !important;
     text-shadow: none;
     background-size: 90% !important;
+    box-shadow: 0 0 3px #FFFFFF inset, 0 2px 1px rgba(0, 0, 0, 0.1);
 }
 .topSrchStyle .submit , .withSrchBtn .submit {
     display: inline-block;
@@ -529,7 +531,7 @@ table.table-striped tr th {
     border-bottom: 1px solid #dddddd !important;
     padding: 5px 5px 6px 6px !important;
     word-wrap: break-word;
-    background: url('../img/bg_box.png') repeat-x 0 0px;
+    background: url('../images/bg_box.png') repeat-x 0 0px;
     color: #d4d4d4;
     text-shadow: 0px 1px 0px #1f1f1f;
     font-size: 11px;
@@ -558,11 +560,13 @@ table.table-striped tr th:first-child {
     padding: 4px 4px 4px 1px;
 }*/
 .addContribSteps  {
-    width: 550px;
     top: 50%;
     left: 50%;
-    width: 560px;
+    /*width: 560px;*/
     margin: -270px 0 0 -280px;
+    width: auto;
+    min-width: 560px;
+    max-width: 700px;
 }
 .addContribSteps .modal-body {
     max-height: 405px;
@@ -584,6 +588,7 @@ table.table-striped tr th:first-child {
 }
 .navbar-inverse .navbar-inner {
     background: #C7D746;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C7D746', endColorstr='#C7D746', GradientType=0);
     border-color: rgb(164, 177, 58);
 }
 body > .navbar a.brand {
@@ -623,16 +628,21 @@ body > .navbar a.brand {
     text-shadow: none !important;
 }
 .dashBtn {
-    background: url('../img/home.png') no-repeat center 1px;
-    background-size: auto 90%;
+    background: url('../images/home.png') no-repeat center 1px;
+    background-size: auto 84%;
 }
 .deleteBtn {
-    background: url('../img/unchecked.png') no-repeat center 3px;
+    background: url('../images/unchecked.png') no-repeat center 3px;
     background-size: auto 80%;
 }
 .editBtn {
-    background: url('../img/edit.png') no-repeat center 0;
+    background: url('../images/edit.png') no-repeat center 0;
     background-size: auto 90%;
+}
+
+.notAllowed {
+    background: url('../images/not_allowed.png') no-repeat center 0;
+    background-size: auto 85%;
 }
 table.table-striped .dashTh , table.table-striped .delTh , table.table-striped .editTh {
     text-align: center;
@@ -729,10 +739,152 @@ table tbody tr:nth-child(even) {
     margin-right: 0px !important;
     float: right !important;
 }
+.checkboxSecond {
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+.checkboxSecond > div {
+    overflow: hidden;
+}
+.checkboxSecond .checkbox , .checkboxSecond label {
+    float: left !important;
+}
+.paymentList {
+    margin-bottom: 41px;
+}
+.paymentList:last-child {
+    margin-bottom: 50px;
+}
+.regNumber .controls {
+    overflow: hidden;
+}
+.regNumber .controls > div {
+    float: left;
+    width: 122px;
+}
+.regNumber .controls input {
+    width: 100%;   
+}
+.regNumber .controls > div:first-child {
+    margin-right: 6%;
+}
+.regNumber {
+    position: relative;
+}
+.row-fluid .form label.error {
+    margin: 0;
+    float: none;
+    width: 100%;
+    display: block;
+    clear: both;
+    margin-left: 9px;
+    padding-top: 2px;
+    color: rgb(224, 23, 23);
+    font-size: 13px;
+}
+.row-fluid .form input.error {
+    border: 1px solid rgb(224, 23, 23);
+}
+textarea.error:focus,
+input[type="text"].error:focus,
+input[type="password"].error:focus,
+input[type="datetime"].error:focus,
+input[type="datetime-local"].error:focus,
+input[type="date"].error:focus,
+input[type="month"].error:focus,
+input[type="time"].error:focus,
+input[type="week"].error:focus,
+input[type="number"].error:focus,
+input[type="email"].error:focus,
+input[type="url"].error:focus,
+input[type="search"].error:focus,
+input[type="tel"].error:focus,
+input[type="color"].error:focus,
+.uneditable-input.error:focus {
+    border-color: rgba(224, 23, 23, 0.53);
+    outline: 0;
+    outline: thin dotted \9;
+    /* IE6-9 */
 
-
-
-
+    -webkit-box-shadow: inset 0 0px 1px rgba(224, 23, 23, 0.53), 0 0 8px rgba(224, 23, 23, 0.53);
+    -moz-box-shadow: inset 0 0px 1px rgba(224, 23, 23, 0.53), 0 0 8px rgba(224, 23, 23, 0.53);
+    box-shadow: inset 0 0px 1px rgba(224, 23, 23, 0.53), 0 0 8px rgba(224, 23, 23, 0.53);
+}
+.packageCheck > div {
+    text-align: left;
+    padding-left: 10px;
+    margin-bottom: 5px;
+}
+.packageCheck > div input {
+    margin-top: 0;
+    margin-right: 3px;
+}
+.posRel {
+    position: relative;
+}
+.imgRow {
+    overflow: hidden;
+    width: 71%;
+}
+.imgRow .closeImage {
+    float: left;
+    margin-right: 10px;
+    position: relative;
+    padding-right: 10px;
+    padding-top: 5px;
+}
+.imgRow .closeImage > div a {
+    position: absolute;
+    top: -6px;
+    right: 5px;
+    line-height: 100%;
+    color: rgb(206, 0, 0);
+    font-weight: bold;
+    font-size: 20px;
+}
+.calendarPopup .checkboxStyle  label {
+    width: auto !important;
+}
+.calendarPopup .checkboxSecond > div {
+    overflow: hidden;
+    float: left;
+    margin-right: 15px;
+}
+.row-fluid .form .popupHalf label.error {
+    width: 70% !important;
+    margin-left: 72px;
+}
+.row-fluid .form textarea.error {
+    border: 1px solid rgb(224, 23, 23);
+}
+.fourChecks .controls > div {
+    margin-left: 7px;
+} 
+.km-root .km-on-android.km-4 {
+    -webkit-transition: none;
+}
+.addContribSteps .span11 {
+    margin-top: 5px;
+}
+.addContribSteps .control-label {
+    width: 80px !important;
+    margin-right: 0.5em !important;
+}
+.addContribSteps .form-horizontal .controls {
+    margin-left: 0px !important;
+    float: left;
+}
+.control-group.addContBtn {
+    margin-left: 95px;
+    margin-top: 22px
+}
+.submitDouble {
+    margin-left: 95px;
+    margin-top: 22px
+}
+.submitDouble .controls {
+    margin-right: 8px;
+}
 
 
 /* Lastly, apply responsive CSS fixes as necessary */
@@ -863,4 +1015,7 @@ table tbody tr:nth-child(even) {
         float: none;
         margin: 0;
     }
+}
+#searchId_chzn{
+    float: left
 }

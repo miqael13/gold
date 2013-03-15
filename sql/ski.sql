@@ -44,9 +44,11 @@ CREATE TABLE `categories` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 /*Data for the table `categories` */
+
+insert  into `categories`(`id`,`title`,`created`,`modified`) values (1,'Колье',NULL,NULL),(2,'Кольцо',NULL,NULL),(3,'Серьги',NULL,NULL),(4,'Браслет',NULL,NULL),(5,'Цепь',NULL,NULL),(6,'Кулон',NULL,NULL),(7,'Часы',NULL,NULL),(8,'Пирстинг',NULL,NULL),(9,'Перстень',NULL,NULL),(10,'Брошь',NULL,NULL),(11,'Запонки',NULL,NULL),(12,'Зажимы для галстуков',NULL,NULL);
 
 /*Table structure for table `jeverlies` */
 
@@ -58,6 +60,7 @@ CREATE TABLE `jeverlies` (
   `categoryId` int(11) DEFAULT NULL,
   `weight` float DEFAULT NULL,
   `stone` varchar(255) DEFAULT NULL,
+  `karat` float DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   `type` enum('BIJOU','WHITE','GOLDEN') DEFAULT NULL,
   `sex` enum('MEN','WOMEN') DEFAULT NULL,
@@ -66,9 +69,27 @@ CREATE TABLE `jeverlies` (
   `created` datetime DEFAULT NULL,
   `modefied` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 /*Data for the table `jeverlies` */
+
+insert  into `jeverlies`(`id`,`userId`,`categoryId`,`weight`,`stone`,`karat`,`price`,`type`,`sex`,`pic1`,`pic2`,`created`,`modefied`) values (25,15,5,10.6,'5',100,9566,'BIJOU','MEN','766bc93da90ce5a80c97420b3c367353.jpg','b2410d1e36f5b3ce083478d2f8dbf203.png','2013-03-15 23:00:51',NULL),(26,15,3,44444,'19',200,44444,'GOLDEN','WOMEN','82dd53796d992eba466c4ac022c35aa3.jpg','83375d678b00500eb39bf65ad6627395.png','2013-03-15 23:16:50',NULL);
+
+/*Table structure for table `stones` */
+
+DROP TABLE IF EXISTS `stones`;
+
+CREATE TABLE `stones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modifed` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+
+/*Data for the table `stones` */
+
+insert  into `stones`(`id`,`title`,`created`,`modifed`) values (1,'Изумруд',NULL,NULL),(2,'Корунд',NULL,NULL),(3,'Сапфир',NULL,NULL),(4,'Гранат',NULL,NULL),(5,'Опал',NULL,NULL),(6,'Рубин',NULL,NULL),(7,'Бриллиант',NULL,NULL),(8,'Коралл',NULL,NULL),(9,'Перламутр',NULL,NULL),(10,'Жемчуг',NULL,NULL),(11,'Янтарь',NULL,NULL),(12,'Бирюза',NULL,NULL),(13,'Аметист',NULL,NULL),(14,'Александрит',NULL,NULL),(15,'Аквамарин',NULL,NULL),(16,'Топаз',NULL,NULL),(17,'Лазурит',NULL,NULL),(18,'Оникс',NULL,NULL),(19,'Жадеит',NULL,NULL);
 
 /*Table structure for table `users` */
 
@@ -88,11 +109,11 @@ CREATE TABLE `users` (
   `created` datetime DEFAULT NULL,
   `modefied` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`firstName`,`lastName`,`email`,`phone`,`address`,`pavilion`,`limit`,`startDate`,`endDate`,`created`,`modefied`) values (1,'Petrosyan','Arsen','arsen1500@lsit.ru',93445309,'V.papazyan21/1','123as',20,NULL,NULL,'2013-03-15 00:26:54',NULL),(2,'Alaverdyan','Miqael','Miqael.alaverdyan@gmail.com',77140889,'V.Papazyan 17','128aa',25,NULL,NULL,'2013-03-15 01:50:52',NULL),(4,'Petrosyan','Asatur','asaturchikl81@mail.ru',91307312,'bangladesh','156as',30,NULL,NULL,'2013-03-15 02:37:03',NULL);
+insert  into `users`(`id`,`firstName`,`lastName`,`email`,`phone`,`address`,`pavilion`,`limit`,`startDate`,`endDate`,`created`,`modefied`) values (15,'Arsen','Petrosyan','arsen1500@list.ru',93445309,'V.papazyan','dfgdfgdfg',20,NULL,NULL,'2013-03-15 21:49:39',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

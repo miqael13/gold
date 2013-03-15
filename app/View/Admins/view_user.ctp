@@ -150,7 +150,9 @@
             </tr>
         </thead>
         <tbody> 
-            <?php  if(isset($jeverly)){ 
+            <?php 
+            $i = 0 ;
+            if(isset($jeverly)){ 
                 foreach($jeverly as $value){
 //                    debug($value);die;
             ?>
@@ -169,7 +171,9 @@
                 <td class="delMain"><a onclick="return confirm('Are you sure?');" class="deleteBtn btnIcon" href="/admins/viewDelete/<?php echo $value['Jeverly']['id']?>"></a></td>
                 
             </tr>
-            <?php } }?>
+            <?php 
+                $i++;
+            } }?>
         </tbody>
     </table>
             </div>

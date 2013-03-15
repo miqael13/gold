@@ -1,5 +1,5 @@
 <script type="text/javascript">
-		
+    var count;
     // Initialization fancybox and haks for Safari
     jQuery(document).ready(function() {
 		
@@ -43,7 +43,7 @@
                 layoutMode : 'masonry',
                 resizable : false,
                 transformsEnabled : true,
-
+                filter: '*',
                 getSortData : {
                     // ...
                     year : function ( $elem ) {
@@ -91,7 +91,7 @@
                 }else if(window_width <750){
                     columns = 1;
                 }
-					
+                count = columns;			
                 return Math.floor( $container_isotope.width() / columns);
             } 
 
@@ -107,13 +107,43 @@
                 resizeItems();
 
             });
+            
+            $(window).scroll(function(){
+                if  ($(window).scrollTop() == $(document).height() - $(window).height()){
+                    var $newItem1 = '<section class="holiday item">'
+                        +'<a class="single_image" href="/images/port-img4.jpg">'
+                        +'<div>'
+                        +'<div class="item_hover">'
+                        +'<header>'         
+                        +' <hgroup>'
+                        +' <h2> цена $273</h2>'
+                        +'<h3> вес 17.5гр</h3>'
+                        +' </hgroup>'
+                        +' </header>'
+                        +'</div>'
+                        +'<div class="n38 icons"><span>`</span></div>'
+                        +'<img src="/images/port-img4.jpeg" alt="Video sit amet consectetur" />'
+                        +'</div>'
+                        +' </a>'
+                        +'</section>';
+                    var $newItem;
+                    for(var i = 0; i<20; i++){
+                        $newItem += $newItem1;
+                    }
+                    $container_isotope.isotope( 'insert', $($newItem) );
+                    resizeItems();
+                }
+            });
+            
+           
         });//images loaded
 
     });
+
 </script>
 <div id="wrap">
     <section id="content" class="portfolio archives"> 
-        <?php for ($i = 0; $i < 10; $i++) { ?>
+        <?php for ($i = 0; $i < 9; $i++) { ?>
             <section class="holiday item">
                 <a class="single_image" href="/images/port-img4.jpg">
                     <div>

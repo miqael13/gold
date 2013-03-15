@@ -23,7 +23,7 @@
             <li class="filter_on"><a href="#" data-filter="*">show all</a></li>
             <li><a href="#" data-filter=".holiday">Photography</a></li>
             <li><a href="#" data-filter=".holiday">Webdesign</a></li>
-            <li><a href="#" data-filter=".holiday">Holiday</a></li>
+            <li><a href="#" data-filter=".holiday" class="testClick">Holiday</a></li>
         </ul>
     </section>
     <!-- end #filters -->

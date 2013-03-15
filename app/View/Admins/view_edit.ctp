@@ -59,9 +59,12 @@
         <div class="row-fluid">
             <div class="span8 fixedHeader navbarDouble">
                 
-                <?php 
+                <?php
+                if(isset($jeverly)){
                     echo $this->Form->create('User');
-                    echo '<div id="file-uploader" class="btn btn-primary"></div>';
+                    echo '<div id="file-uploader" class="btn btn-primary"></div>'.'  ';
+                    echo '<br/><img src="/system/Users/'.$id.'/'.$jeverly['Jeverly']['pic1'].'" width="100px">';
+                    echo '<img src="/system/Users/'.$id.'/'.$jeverly['Jeverly']['pic2'].'" width="100px">';
                     echo $this->Form->input(
                             'userId',
                             array(
@@ -80,6 +83,7 @@
                                     'label'=>'Category',
                                     'options'=>$oprions,
                                     'class'=>'required',
+                                    'value'=>$jeverly['Jeverly']['categoryId']
                                     
                                     ));
                     }
@@ -88,6 +92,7 @@
                             array(
                                 'type'=>'text',
                                 'class'=>'required number',
+                                'value'=>$jeverly['Jeverly']['weight']
                                 ));
                     if(isset($stone)){
                         foreach($stone as $value){
@@ -98,24 +103,28 @@
                                 array(
                                     'type'=>'select',
                                     'options'=>$option,
+                                    'value'=>$jeverly['Jeverly']['stone']
                                     ));
                     }
                     echo $this->Form->input(
                             'karat',
                             array(
                                 'type'=>'number',
-                                'div'=>false
+                                'div'=>false,
+                                'value'=>$jeverly['Jeverly']['karat']
                                 ));
                     echo $this->Form->input(
                             'price',
                             array(
                                 'type'=>'text',
                                 'class'=>'required number',
+                                'value'=>$jeverly['Jeverly']['price']
                                 ));
                     echo $this->Form->input(
                             'type',
                             array(
                                 'type'=>'select',
+                                'value'=>$jeverly['Jeverly']['type'],
                                 'options'=>array(
                                     'BIJOU'=>'BIJOU',
                                     'GOLDEN'=>'GOLDEN',
@@ -125,53 +134,14 @@
                             'sex',
                             array(
                                 'type'=>'select',
+                                'value'=>$jeverly['Jeverly']['sex'],
                                 'options'=>array(
                                     'MEN'=>'MEN',
                                     'WOMEN'=>'WOMEN'
                                 )));
                     echo $this->Form->submit('save',array('class'=>'btn btn-primary'));
                     echo $this->Form->end();
-                    ?>
-                <table class="userList table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th style="width: 10%"># Id</th>
-                <th style="width: 10%">Pic 1</th>
-                <th style="width: 15%">Pic 2</th>
-                <th style="width: 15%">Category</th>
-                <th style="width: 15%">Weight</th>
-                <th style="width: 15%">Stone</th>
-                <th style="width: 15%">Karat</th>
-                <th style="width: 8%">Price</th>
-                <th style="width: 8%">Type</th>
-                <th style="width: 8%">Sex</th>
-                <th style="width: 40px" class="editTh">Edit</th>
-                <th style="width: 40px" class="delTh">Delete</th>
-            </tr>
-        </thead>
-        <tbody> 
-            <?php  if(isset($jeverly)){ 
-                foreach($jeverly as $value){
-//                    debug($value);die;
-            ?>
-            <tr>                            
-                <td><?php echo $value['Jeverly']['id'];?></td>
-                <td><img src="/system/Users/<?php echo $id;?>/<?php echo $value['Jeverly']['pic1'];?>"></td>
-                <td><img src="/system/Users/<?php echo $id;?>/<?php echo $value['Jeverly']['pic2'];?>"></td>
-                <td><?php echo $value['Category']['title'];?></td>
-                <td><?php echo $value['Jeverly']['weight'];?></td>
-                <td><?php echo $value['Jeverly']['stone'];?></td>
-                <td><?php echo $value['Jeverly']['karat'];?></td>
-                <td><?php echo '$'.$value['Jeverly']['price'];?></td>
-                <td><?php echo $value['Jeverly']['type'];?></td>
-                <td><?php echo $value['Jeverly']['sex'];?></td>
-                <td class="editMain"><a class="editBtn btnIcon" href="/admins/viewEdit/<?php echo $value['Jeverly']['id']?>"></a></td>
-                <td class="delMain"><a onclick="return confirm('Are you sure?');" class="deleteBtn btnIcon" href="/admins/viewDelete/<?php echo $value['Jeverly']['id']?>"></a></td>
-                
-            </tr>
-            <?php } }?>
-        </tbody>
-    </table>
+                } ?>
             </div>
         </div>
     </div>

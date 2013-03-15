@@ -156,6 +156,33 @@ public function beforeFilter() {
         
     }
     
+    public function viewEdit($id = NULL){
+        $this->layout = "admin" ;
+        $userId = $this->Jeverly->find('first',array('conditions'=>array('id'=>$id))) ;
+        $this->viewData['id'] = $userId['Jeverly']['userId'] ;
+        $this->viewData['category'] = $this->Category->find('all') ;
+        $this->viewData['stone'] = $this->Stone->find('all') ;
+        $jeverly = $this->Jeverly->find(
+                'first',
+                array(
+                    'conditions'=>array(
+                        'id'=>$id
+                    )
+                )) ;
+        $this->viewData['jeverly'] = $jeverly ;
+        $data = $this->request->data ;
+        if(!empty($data)){
+            $this->Jeverly->id = $id ;
+            $save = $this->Jeverly->save($data['User']) ;
+            if($save){
+                $this->Session->write('Note.ok', 'Your data is updated.') ;
+                $this->redirect('/admins/viewUser/'.$save['Jeverly']['userId']) ;
+            }else{
+                $this->Session->write('Note.error', 'Something is wrong.') ;
+            }
+        }
+    }
+    
     public function viewDelete($id = NULL){
         $this->autoRender = false ;
         $this->Jeverly->id = $id ;

@@ -3,10 +3,13 @@ class AdminsController extends AppController {
     
     
 var $helpers = array('Html','Form','Session','Paginator');
-var $components = array('Session','Paginator');
+var $components = array('Session','Paginator','FileUploader');
 var $uses = array(
     'Admin',
     'User',
+    'Category',
+    'Jeverly',
+    'Stone'
 );
 //var $uses = array('Book','Basket');
 
@@ -58,8 +61,10 @@ public function beforeFilter() {
         $data = $this->data ;
         if(!empty($data)){
             $save = $this->User->save($data['User']) ;
+            $pathname = WWW_ROOT . 'system' . DS .'Users'. DS .$save['User']['id'];
             if($save){
                 $this->Session->write('Note.ok', 'User has been added.') ;
+                mkdir($pathname);
                 $this->redirect('/admins/userList') ;
             }else{
                 $this->Session->write('Note.error', 'Something is wrong.') ;
@@ -105,9 +110,127 @@ public function beforeFilter() {
         $this->autoRender = false ;
         $this->User->id = $id ;
         $this->User->delete();
+        $pathname = WWW_ROOT . 'system' . DS .'Users'. DS .$id;
+//        unset($pathname);
         $this->redirect('/admins/userList');
     }
     
+    public function viewUser($id = NULL){
+        $this->layout = "admin" ;
+        $this->viewData['id'] = $id ;
+        $this->viewData['category'] = $this->Category->find('all') ;
+        $this->viewData['stone'] = $this->Stone->find('all') ;
+        $limit = 10 ;
+        $this->paginate = array(
+            'joins' => array(
+                array(
+                    'table' => 'categories',
+                    'alias' => 'Category',
+                    'type' => 'LEFT',
+                    'foreignKey' => false,
+                    'conditions' => array(
+                        'Jeverly.categoryId = Category.id',
+                        ),
+                    ),
+                ),
+            'conditions' => array(
+                'Jeverly.userId' => $id
+                ),
+            'order' => array('Jeverly.created' => 'DESC'),
+            'limit' => $limit,
+            'fields' => array('Category.*', 'Jeverly.*'),
+            );
+        $data = $this->paginate('Jeverly');
+        $this->viewData['jeverly'] = $data ;
+        $data = $this->data ;
+        if(!empty($data)){
+            $save = $this->Jeverly->save($data['User']) ;
+            if($save){
+                $this->Session->write('Note.ok', 'Your data is updated.') ;
+                $this->redirect('/admins/viewUser/'.$id);
+            }else{
+                $this->Session->write('Note.error', 'Something is wrong.') ;
+            }
+            
+        }
+        
+    }
+    
+    public function viewDelete($id = NULL){
+        $this->autoRender = false ;
+        $this->Jeverly->id = $id ;
+        $this->Jeverly->delete();
+        $this->redirect($this->referer());
+    }
+    
+    public function uploadManulFile($id = Null){
+        //$this->autoRender = false;
+        if(isset($_GET['qqfile'])){
+            $imgName = $_GET['qqfile'];
+        }elseif(isset($_FILES['qqfile'])){
+            $imgName = $_FILES['qqfile']['name'];
+        }
+
+        $explode = explode('.', $imgName);
+        $ext = end($explode);
+        $name = md5(microtime()) . '.' . $ext;
+        //$getSessionImg = $this->Session->read()
+        $ext = strtolower($ext);
+        if($ext == 'jpg' || $ext == 'png' || $ext == 'gif'){
+//            $checkCurrent = $this->Session->read('currentImg');
+//            if($checkCurrent){
+//                if($checkCurrent['userId'] == $this->u_id && $checkCurrent['currentImg']){
+//                    //if($this->data[''])
+//                    @$deleteImg = unlink(WWW_ROOT . 'system' . DS . $checkCurrent['currentImg']);
+//                    if($deleteImg){
+////                        $this->Session->delete('currentImg');
+//                    }
+//                }
+//            }
+            $currentUserId = $this->u_id;
+            $getData = array('currentImg' => $name, 'userId' => $currentUserId);
+            $this->Session->write('currentImg', $getData);
+            // if (!is_dir(WWW_ROOT . 'system' . DS . 'userPic' . DS.$this->u_id)){
+            // mkdir(WWW_ROOT . 'system' . DS . 'userPic' . DS.$this->u_id,true);}
+            $this->FileUploader->upload(WWW_ROOT . 'system' . DS . 'Users' . DS . $id .DS);
+            $response['fileName'] = $name;
+            $response['success'] = true;
+            @rename(WWW_ROOT . 'system' . DS . 'Users' . DS . $id .DS . $imgName, WWW_ROOT . 'system' . DS . 'Users' . DS . $id .DS . $name);
+            $img = array();
+            $img = $this->Session->read('img');
+            $img[$name] = $name;
+            $imageInfo = getimagesize(WWW_ROOT . 'system' . DS . 'Users' . DS . $id .DS . $name);
+            if(($imageInfo[0] > 550) || ($imageInfo[1] > 550)){
+                if($imageInfo['0'] > $imageInfo['1']){
+                    $hh = $imageInfo['1'] / $imageInfo['0'];
+                    $imageInfo['0'] = 550;
+                    $imageInfo['1'] = round($hh * 550);
+                }else{
+                    $hh = $imageInfo['0'] / $imageInfo['1'];
+                    $imageInfo['1'] = 550;
+                    $imageInfo['0'] = round($hh * 550);
+                }
+            }
+            $response['width'] = $imageInfo['0'];
+            $response['height'] = $imageInfo['1'];
+            if($imageInfo['0'] > $imageInfo['1']){
+                $response['cropCube'] = $imageInfo['0'];
+            }else{
+                $response['cropCube'] = $imageInfo['1'];
+            }
+            $this->Session->write('img', $name);
+            $echo = json_encode($response);
+            echo $echo;
+            die;
+        }else{
+            $response['success'] = false;
+            $echo = json_encode($response);
+            echo $echo;
+            die;
+        }
+        //move_uploaded_file($_GET['qqfile'], WWW_ROOT . 'system' . DS . 'qustionsFile' . DS . $_GET['qqfile']);
+        //var_dump($_GET['qqfile']);die;
+    }
     
     public function logout(){
         $this->autoRender = false ;

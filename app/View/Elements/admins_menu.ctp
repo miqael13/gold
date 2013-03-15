@@ -5,7 +5,7 @@
                 <span class="icon-bar"></span>
             </a>
             <a class="brand" href="http://kreativcom.com" target="_blank">
-                <img src="/img/logo_main.png"/>
+                <!--<img src="/images/images.jpg"/>-->
             </a>
             <div class="nav-collapse">
                 <ul class="nav">

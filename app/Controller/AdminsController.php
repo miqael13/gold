@@ -57,7 +57,13 @@ public function beforeFilter() {
         $this->layout = "admin" ;
         $data = $this->data ;
         if(!empty($data)){
-            $this->User->save($data['User']);
+            $save = $this->User->save($data['User']) ;
+            if($save){
+                $this->Session->write('Note.ok', 'User has been added.') ;
+                $this->redirect('/admins/userList') ;
+            }else{
+                $this->Session->write('Note.error', 'Something is wrong.') ;
+            }
         }
     }
     
@@ -71,6 +77,36 @@ public function beforeFilter() {
         $this->viewData['users'] = $data ;
     }
     
+    public function userEdit($id = NULL){
+        $this->layout = "admin" ;
+        $users = $this->User->find(
+                    'first',
+                    array(
+                        'conditions'=>array(
+                            'id'=>$id
+                            )
+                        )
+                    ) ;
+        $this->viewData['users'] = $users;
+        $data = $this->request->data ;
+        if(!empty($data)){
+            $this->User->id = $id ;
+            $save = $this->User->save($data) ;
+            if($save){
+                $this->Session->write('Note.ok', 'Your data is updated.') ;
+                $this->redirect('/admins/userList') ;
+            }else{
+                $this->Session->write('Note.error', 'Something is wrong.') ;
+            }
+        }
+    }
+    
+    public function userDelete($id = NULL){
+        $this->autoRender = false ;
+        $this->User->id = $id ;
+        $this->User->delete();
+        $this->redirect('/admins/userList');
+    }
     
     
     public function logout(){

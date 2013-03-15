@@ -1,7 +1,7 @@
 <?php echo $this->element('admins_menu'); ?>
 <script>
 $(document).ready(function(){   
-    $("#UserAddUserForm").validate();
+    $("#UserUserEditForm").validate();
 });
 </script>
 <div style="margin-left: 500px;margin-top: 100px">
@@ -13,6 +13,7 @@ $(document).ready(function(){
             array(
                 'type'=>'text',
                 'label'=>'First Name',
+                'value'=>$users['User']['firstName'],
                 'class'=>'required'
                 )
             );
@@ -21,6 +22,7 @@ $(document).ready(function(){
             array(
                 'type'=>'text',
                 'label'=>'Last Name',
+                'value'=>$users['User']['lastName'],
                 'class'=>'required'
                 )
             );
@@ -29,6 +31,7 @@ $(document).ready(function(){
             array(
                 'type'=>'text',
                 'label'=>'Email',
+                'value'=>$users['User']['email'],
                 'class'=>'required email'
                 )
             );
@@ -37,6 +40,7 @@ $(document).ready(function(){
             array(
                 'type'=>'number',
                 'label'=>'Phone Number',
+                'value'=>$users['User']['phone'],
                 'class'=>'required number'
                 )
             );
@@ -45,6 +49,7 @@ $(document).ready(function(){
             array(
                 'type'=>'text',
                 'label'=>'Address',
+                'value'=>$users['User']['address'],
                 'class'=>'required'
                 )
             );
@@ -53,6 +58,7 @@ $(document).ready(function(){
             array(
                 'type'=>'text',
                 'label'=>'Pavilion',
+                'value'=>$users['User']['pavilion'],
                 'class'=>'required'
                 )
             );
@@ -62,8 +68,9 @@ $(document).ready(function(){
                 'type'=>'select',
                 'id'=>'UserAddForm',
                 'label'=>'Limit',
+                'value'=>$users['User']['limit'],
                 'options'=>array(
-                    'select'=>'',
+                    'select'=>'select',
                     '10'=>'10',
                     '15'=>'15',
                     '20'=>'20',

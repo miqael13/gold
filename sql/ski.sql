@@ -88,9 +88,11 @@ CREATE TABLE `users` (
   `created` datetime DEFAULT NULL,
   `modefied` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
+
+insert  into `users`(`id`,`firstName`,`lastName`,`email`,`phone`,`address`,`pavilion`,`limit`,`startDate`,`endDate`,`created`,`modefied`) values (1,'Petrosyan','Arsen','arsen1500@lsit.ru',93445309,'V.papazyan21/1','123as',20,NULL,NULL,'2013-03-15 00:26:54',NULL),(2,'Alaverdyan','Miqael','Miqael.alaverdyan@gmail.com',77140889,'V.Papazyan 17','128aa',25,NULL,NULL,'2013-03-15 01:50:52',NULL),(4,'Petrosyan','Asatur','asaturchikl81@mail.ru',91307312,'bangladesh','156as',30,NULL,NULL,'2013-03-15 02:37:03',NULL);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

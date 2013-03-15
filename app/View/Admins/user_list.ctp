@@ -3,7 +3,7 @@
 <div class="container-fluid">
 <div class="row-fluid">
 <div class="span8 fixedHeader navbarDouble">
-    <table class="userList table table-bordered table-striped" style="margin-left: 200px ">
+    <table class="userList table table-bordered table-striped">
         <thead>
             <tr>
                 <th style="width: 10%">Home</th>

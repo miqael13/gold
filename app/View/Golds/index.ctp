@@ -37,7 +37,7 @@
                 itemSelector : '.item',
                 layoutMode : 'masonry',
                 resizable : false,
-                transformsEnabled : true,
+                transformsEnabled : false,
                 filter: '*',
                 getSortData : {
                     // ...
@@ -104,15 +104,13 @@
             
             $(window).scroll(function(){
                 if  ($(window).scrollTop() == $(document).height() - $(window).height()){
-                    
                     var $newItem;
                     $.ajax({
                         url: '/golds/addIsotope/'+offset,
                         type: 'POST',
-                        beforeSend:function(){$(".preloader").show()},
+                        beforeSend:function(){$("#infscr-loading").show()},
                         dataType: 'json',
-                        success: function(data){
-                            $(".preloader").hide('slow');
+                        success: function(data){                            
                             if(data.status){
                                 $.each(data.jeverly,function(key,val){
                                     var $newItem1 = '<section class="holiday item">'
@@ -135,12 +133,16 @@
                                 });
                                 var $newEls = $($newItem);
                                 $container_isotope.append( $newEls ).isotope( 'appended', $newEls );
-                                //                                $container_isotope.isotope( 'reloadItems' );
+//                                $container_isotope.isotope( 'reloadItems' );
                                 resizeItems();
+                                //                                 $container_isotope.isotope( 'reloadItems' );
+                                //                                 resizeItems();
                                 offset++;
+                                $("#infscr-loading").hide('slow');
                             }else{
+                                $("#infscr-loading").hide('slow');
                                 return false;
-                            }                            
+                            }                               
                         }
                     });
                   
@@ -172,9 +174,10 @@
                     </div>
                 </a>
             </section>
-        <?php } ?>
-
+        <?php } ?>  
+        <div id="infscr-loading" style="display: block;"><img alt="Loading..." src="/images/loading.gif"><div><em>Пожалуста подаждите...</em></div></div>
     </section><!-- end #content --> 
+    
 </div>  
 
 

@@ -37,6 +37,9 @@ var $uses = array('Jeverly');
         echo json_encode($params);
         exit;
     }
+    public function singleView(){
+        
+    }
  
 
 }

@@ -154,7 +154,11 @@ public function beforeFilter() {
         $this->viewData['jeverly'] = $data ;
         $data = $this->data ;
         if(!empty($data)){
-            $save = $this->Jeverly->save($data['User']) ;
+            if(isset($data['User']['pic1']) and isset($data['User']['pic2'])){
+                $save = $this->Jeverly->save($data['User']) ;
+            }else{
+                $this->Session->write('Note.error', 'Something is wrong.') ;
+            }
             if($save){
                 $this->Session->write('Note.ok', 'Your data is updated.') ;
                 $this->redirect('/admins/viewUser/'.$id);

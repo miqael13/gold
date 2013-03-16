@@ -179,3 +179,10 @@ CakeLog::config('error', array(
 	'types' => array('warning', 'error', 'critical', 'alert', 'emergency'),
 	'file' => 'error',
 ));
+
+
+Configure::write('Config.language','eng');
+Configure::write('Email.concierge','@codebnb.me');
+Configure::write('Email.noreply','noreply@codebnb.me');
+Configure::write('TeamName','Kreative');
+Configure::write('WebName','');

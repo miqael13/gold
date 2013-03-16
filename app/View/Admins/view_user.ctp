@@ -58,7 +58,8 @@
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span8 fixedHeader navbarDouble">
-                
+                <?php if(count($jeverly) < ($userID['User']['limit'])){ ?>
+                <div class="add">
                 <?php 
                     echo $this->Form->create('User');
                     echo '<div id="file-uploader" class="btn btn-primary"></div>';
@@ -132,6 +133,65 @@
                     echo $this->Form->submit('save',array('class'=>'btn btn-primary'));
                     echo $this->Form->end();
                     ?>
+                </div>
+                <?php }  elseif($userID['User']['active'] == 0) { ?>
+                    
+               
+                <div class="start">
+                    <?php 
+                        echo $this->Form->create(
+                                'Admins',
+                                array(
+                                    'action' => 'start',
+                                    ));
+                        echo $this->Form->input(
+                                'endDate'
+                                ,array(
+                                    'type'=>'select',
+                                    'options'=>array(
+                                        '1'=>'1',
+                                        '2'=>'2',
+                                        '3'=>'3',
+                                        '4'=>'4',
+                                        '5'=>'5',
+                                        '6'=>'6',
+                                        '7'=>'7',
+                                        '8'=>'8',
+                                        '9'=>'9',
+                                        '10'=>'10',
+                                        '11'=>'11',
+                                        '12'=>'12',
+                                        
+                                    )
+                                    ));
+                        echo $this->Form->input(
+                            'id',
+                            array(
+                                'type'=>'hidden',
+                                'value'=>$id
+                                ));
+                        echo $this->Form->submit('Start',array('class'=>'btn'));
+                        echo $this->Form->end();
+                    ?>
+                </div>
+                <?php }else{ 
+                    echo $this->Form->create(
+                                'Admins',
+                                array(
+                                    'action' => 'stop',
+                                    ));
+                    echo "До конца показа осталось: ".$days." дней";
+                    echo $this->Form->input(
+                            'id',
+                            array(
+                                'type'=>'hidden',
+                                'value'=>$id
+                                ));
+                        echo $this->Form->submit('Stop',array('class'=>'btn'));
+                        echo $this->Form->end();
+                }
+                
+                ?>
                 <table class="userList table table-bordered table-striped">
         <thead>
             <tr>
@@ -151,10 +211,8 @@
         </thead>
         <tbody> 
             <?php 
-            $i = 0 ;
             if(isset($jeverly)){ 
                 foreach($jeverly as $value){
-//                    debug($value);die;
             ?>
             <tr>                            
                 <td><?php echo $value['Jeverly']['id'];?></td>
@@ -172,7 +230,6 @@
                 
             </tr>
             <?php 
-                $i++;
             } }?>
         </tbody>
     </table>
@@ -180,3 +237,6 @@
         </div>
     </div>
 </div>
+<div style="margin-left: 500px">
+    <?php echo $this->element('paginate'); ?>
+    </div>

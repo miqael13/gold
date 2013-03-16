@@ -1,21 +1,3 @@
-/*
-SQLyog Ultimate v8.32 
-MySQL - 5.5.16 : Database - gold
-*********************************************************************
-*/
-
-/*!40101 SET NAMES utf8 */;
-
-/*!40101 SET SQL_MODE=''*/;
-
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`gold` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `gold`;
-
 /*Table structure for table `admins` */
 
 DROP TABLE IF EXISTS `admins`;
@@ -69,11 +51,11 @@ CREATE TABLE `jeverlies` (
   `created` datetime DEFAULT NULL,
   `modefied` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
 
 /*Data for the table `jeverlies` */
 
-insert  into `jeverlies`(`id`,`userId`,`categoryId`,`weight`,`stone`,`karat`,`price`,`type`,`sex`,`pic1`,`pic2`,`created`,`modefied`) values (25,15,5,10.6,'5',100,9566,'BIJOU','MEN','766bc93da90ce5a80c97420b3c367353.jpg','b2410d1e36f5b3ce083478d2f8dbf203.png','2013-03-15 23:00:51',NULL),(26,15,3,44444,'19',200,44444,'GOLDEN','WOMEN','82dd53796d992eba466c4ac022c35aa3.jpg','83375d678b00500eb39bf65ad6627395.png','2013-03-15 23:16:50',NULL);
+insert  into `jeverlies`(`id`,`userId`,`categoryId`,`weight`,`stone`,`karat`,`price`,`type`,`sex`,`pic1`,`pic2`,`created`,`modefied`) values (39,15,1,45345,'1',345345,345345,'BIJOU','MEN','91bdfb89a10e874245dc93e2f9c4f594.jpg','31cf6bdb14864e063336f1757f211d0e.png','2013-03-16 00:22:34',NULL),(40,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2013-03-16 00:25:10',NULL),(41,15,2,234,'10',67467,677657,'BIJOU','MEN','e82a472313a6c6eafd62525462da251b.jpg','2610efb87dbd62017f9bb4c400cb0277.jpg','2013-03-16 20:10:51',NULL),(42,15,6,10.6,'1',20,500,'BIJOU','MEN','01cc75aaf5c42b7ed222c80aab05b090.jpg','7ae0a38b5e9358f1acf6f5da54cde42f.jpg','2013-03-16 20:11:16',NULL),(43,15,6,234234,'1',500,9620,'BIJOU','WOMEN','f30cc209d8f102697d0674879d8c6a0c.jpg','ec866aa5d61f3cbf5098ee13cb605c5c.jpg','2013-03-16 20:12:27',NULL),(44,15,11,234234,'14',300,5645,'BIJOU','MEN',NULL,NULL,'2013-03-16 20:13:14',NULL),(45,15,1,545454,'1',45454,4545,'BIJOU','MEN',NULL,NULL,'2013-03-16 20:14:00',NULL),(46,15,1,45454,'1',4545,45454,'BIJOU','MEN',NULL,NULL,'2013-03-16 20:14:07',NULL),(47,15,1,45454,'1',4545,454545,'BIJOU','MEN','f325806e40a8fe3f33e46900f4eedab1.jpg',NULL,'2013-03-16 20:14:21',NULL),(48,15,1,343443,'1',4344,34343,'BIJOU','MEN',NULL,NULL,'2013-03-16 20:14:40',NULL),(49,15,1,343443,'1',4344,34343,'BIJOU','MEN',NULL,NULL,'2013-03-16 20:15:19',NULL),(50,16,1,31231,'1',123123,1231231,'BIJOU','MEN','46f73c18827ddd02c30be3a2bbedb8a0.jpg','ccac1beee2072b00e6b79edf1fbdd800.jpg','2013-03-16 20:22:32',NULL);
 
 /*Table structure for table `stones` */
 
@@ -106,16 +88,12 @@ CREATE TABLE `users` (
   `limit` int(11) DEFAULT NULL,
   `startDate` date DEFAULT NULL,
   `endDate` date DEFAULT NULL,
+  `active` tinyint(1) DEFAULT NULL,
   `created` datetime DEFAULT NULL,
   `modefied` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`firstName`,`lastName`,`email`,`phone`,`address`,`pavilion`,`limit`,`startDate`,`endDate`,`created`,`modefied`) values (15,'Arsen','Petrosyan','arsen1500@list.ru',93445309,'V.papazyan','dfgdfgdfg',20,NULL,NULL,'2013-03-15 21:49:39',NULL);
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+insert  into `users`(`id`,`firstName`,`lastName`,`email`,`phone`,`address`,`pavilion`,`limit`,`startDate`,`endDate`,`active`,`created`,`modefied`) values (15,'Arsen','Petrosyan','arsen1500@list.ru',93445309,'V.papazyan','dfgdfgdfg',10,'2013-03-16','2013-04-20',1,'2013-03-15 21:49:39',NULL),(16,'Miqael','Alaverdyan','miqael.alaverdyan@gmail.com',77140889,'V.papazyan','17',10,NULL,NULL,NULL,'2013-03-16 20:22:03',NULL);

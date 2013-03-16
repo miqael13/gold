@@ -1,1 +1,1 @@
-<img src="/images/port-img4.jpeg" width="480px" height="auto"/>
+<img src="/system/Users/<?php echo $jeverly['Jeverly']['userId']?>/<?php echo $jeverly['Jeverly']['pic1']?>" width="480px" height="auto"/>

@@ -1,27 +1,22 @@
 <script type="text/javascript">
-    var count;
-    // Initialization fancybox and haks for Safari
-    jQuery(document).ready(function() {
-		
-        /* This is basic - uses default settings */
-			
-        jQuery("a.single_image").on('click',function(){
-            $.fancybox({            
-                'type'  : 'iframe',
-                'autoSize': false,
-                'width'             : 500,
-                'height'            : 500,
-                'href'              : '/golds/pic/',
-                'transitionIn'	:	'elastic',
-                'transitionOut'	:	'elastic',
-                'speedIn'		:	600, 
-                'speedOut'		:	200, 
-                'overlayShow'	:	true
-            });
-            return false;
-        });	
-			
-    });
+    var offset = 1;
+    
+    jQuery(".single_image").live('click',function(){
+        var jevId = $(this).attr('jevId');
+        $.fancybox({            
+            'type'  : 'iframe',
+            'autoSize': false,
+            'width'             : 500,
+            'height'            : 500,
+            'href'              : '/golds/pic/'+jevId,
+            'transitionIn'	:	'elastic',
+            'transitionOut'	:	'elastic',
+            'speedIn'		:	600, 
+            'speedOut'		:	200, 
+            'overlayShow'	:	true
+        });
+        return false;
+    });	
 
     // Initialization istope       	
     jQuery(document).ready(function(jQuery) {
@@ -91,7 +86,6 @@
                 }else if(window_width <750){
                     columns = 1;
                 }
-                count = columns;			
                 return Math.floor( $container_isotope.width() / columns);
             } 
 
@@ -110,28 +104,46 @@
             
             $(window).scroll(function(){
                 if  ($(window).scrollTop() == $(document).height() - $(window).height()){
-                    var $newItem1 = '<section class="holiday item">'
-                        +'<a class="single_image" href="/images/port-img4.jpg">'
-                        +'<div>'
-                        +'<div class="item_hover">'
-                        +'<header>'         
-                        +' <hgroup>'
-                        +' <h2> цена $273</h2>'
-                        +'<h3> вес 17.5гр</h3>'
-                        +' </hgroup>'
-                        +' </header>'
-                        +'</div>'
-                        +'<div class="n38 icons"><span>`</span></div>'
-                        +'<img src="/images/port-img4.jpeg" alt="Video sit amet consectetur" />'
-                        +'</div>'
-                        +' </a>'
-                        +'</section>';
+                    
                     var $newItem;
-                    for(var i = 0; i<20; i++){
-                        $newItem += $newItem1;
-                    }
-                    $container_isotope.isotope( 'insert', $($newItem) );
-                    resizeItems();
+                    $.ajax({
+                        url: '/golds/addIsotope/'+offset,
+                        type: 'POST',
+                        beforeSend:function(){$(".preloader").show()},
+                        dataType: 'json',
+                        success: function(data){
+                            $(".preloader").hide('slow');
+                            if(data.status){
+                                $.each(data.jeverly,function(key,val){
+                                    var $newItem1 = '<section class="holiday item">'
+                                        +'<a class="single_image" jevId="'+val.Jeverly.id+'" href="/system/Users/'+val.Jeverly.userId+'/'+val.Jeverly.pic1+'">'
+                                        +'<div>'
+                                        +'<div class="item_hover">'
+                                        +'<header>'         
+                                        +' <hgroup>'
+                                        +' <h2> цена $'+val.Jeverly.price+'</h2>'
+                                        +'<h3> вес '+val.Jeverly.weight+'гр</h3>'
+                                        +' </hgroup>'
+                                        +' </header>'
+                                        +'</div>'
+                                        +'<div class="n38 icons"><span>`</span></div>'
+                                        +'<img src="/system/Users/'+val.Jeverly.userId+'/'+val.Jeverly.pic1+'" />'
+                                        +'</div>'
+                                        +' </a>'
+                                        +'</section>';
+                                    $newItem += $newItem1;                                    
+                                });
+                                var $newEls = $($newItem);
+                                $container_isotope.append( $newEls ).isotope( 'appended', $newEls );
+                                //                                $container_isotope.isotope( 'reloadItems' );
+                                resizeItems();
+                                offset++;
+                            }else{
+                                return false;
+                            }                            
+                        }
+                    });
+                  
                 }
             });
             
@@ -143,20 +155,20 @@
 </script>
 <div id="wrap">
     <section id="content" class="portfolio archives"> 
-        <?php for ($i = 0; $i < 9; $i++) { ?>
+        <?php foreach ($jeverly as $key => $value) { ?>
             <section class="holiday item">
-                <a class="single_image" href="/images/port-img4.jpg">
+                <a class="single_image" jevId="<?php echo $value['Jeverly']['id']; ?>" href="/system/Users/<?php echo $value['Jeverly']['userId']; ?>/<?php echo $value['Jeverly']['pic1']; ?>">
                     <div>
                         <div class="item_hover">
                             <header>         
                                 <hgroup>
-                                    <h2> цена $273</h2>
-                                    <h3> вес 17.5гр</h3>
+                                    <h2> цена $<?php echo $value['Jeverly']['price'] ?></h2>
+                                    <h3> вес <?php echo $value['Jeverly']['weight'] ?>гр</h3>
                                 </hgroup>
                             </header>
                         </div>
                         <div class="n38 icons"><span>`</span></div>
-                        <img src="/images/port-img4.jpeg" alt="Video sit amet consectetur" />
+                        <img src="/system/Users/<?php echo $value['Jeverly']['userId']; ?>/<?php echo $value['Jeverly']['pic1']; ?>" />
                     </div>
                 </a>
             </section>

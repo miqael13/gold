@@ -199,9 +199,11 @@ public function beforeFilter() {
     
     public function viewDelete($id = NULL){
         $this->autoRender = false ;
+        $Jeverly = $this->Jeverly->find('first',array('conditions'=>array('id'=>$id))) ;
+        $userID = $Jeverly['Jeverly']['userId'] ;
         $this->Jeverly->id = $id ;
         $this->Jeverly->delete();
-        $this->redirect($this->referer());
+        $this->redirect('/admins/viewUser/'.$userID);
     }
     
     public function uploadManulFile($id = Null){
@@ -293,7 +295,7 @@ public function beforeFilter() {
             $m = $data['Admins']['endDate'] ;
             $this->User->id = $data['Admins']['id'] ;
             $this->User->save(array('active'=>'1','startDate'=>$today,'endDate'=>$date)) ;
-            $this->redirect($this->referer());
+            $this->redirect('/admins/viewUser/'.$data['Admins']['id']);
         }
         
     }
@@ -304,7 +306,7 @@ public function beforeFilter() {
         if(!empty($data)){
             $this->User->id = $data['Admins']['id'] ;
             $this->User->save(array('active'=>'0')) ;
-            $this->redirect($this->referer());
+            $this->redirect('/admins/viewUser/'.$data['Admins']['id']);
         }
     }
     
@@ -314,6 +316,9 @@ public function beforeFilter() {
         $this->redirect('/admins/login');
     }
     
+    public function porc(){
+        
+    }
     
  
 

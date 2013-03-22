@@ -1,7 +1,7 @@
 <script type="text/javascript">
     var offset = 1;
     
-    jQuery(".single_image").live('click',function(){
+    jQuery(".item_hover").live('click',function(){
         var jevId = $(this).attr('jevId');
         $.fancybox({            
             'type'  : 'iframe',
@@ -37,7 +37,7 @@
                 itemSelector : '.item',
                 layoutMode : 'masonry',
                 resizable : false,
-                transformsEnabled : false,
+                transformsEnabled : true,
                 filter: '*',
                 getSortData : {
                     // ...
@@ -113,10 +113,10 @@
                         success: function(data){                            
                             if(data.status){
                                 $.each(data.jeverly,function(key,val){
-                                    var $newItem1 = '<section class="holiday item">'
-                                        +'<a class="single_image" jevId="'+val.Jeverly.id+'" href="/system/Users/'+val.Jeverly.userId+'/'+val.Jeverly.pic1+'">'
+                                    var $newItem1 = '<section class="holiday item" >'
+                                        +'<a class="single_image">'
                                         +'<div>'
-                                        +'<div class="item_hover">'
+                                        +'<div class="item_hover" jevId="'+val.Jeverly.id+'">'
                                         +'<header>'         
                                         +' <hgroup>'
                                         +' <h2> цена $'+val.Jeverly.price+'</h2>'
@@ -133,7 +133,7 @@
                                 });
                                 var $newEls = $($newItem);
                                 $container_isotope.append( $newEls ).isotope( 'appended', $newEls );
-//                                $container_isotope.isotope( 'reloadItems' );
+                                //                                $container_isotope.isotope( 'reloadItems' );
                                 resizeItems();
                                 //                                 $container_isotope.isotope( 'reloadItems' );
                                 //                                 resizeItems();
@@ -155,13 +155,16 @@
     });
 
 </script>
-<div id="wrap">
+
+<div id="wrap">    
+    <div style="width: 98%; background: #fff; height: 150px;margin: 1%;">
+    </div>
     <section id="content" class="portfolio archives"> 
         <?php foreach ($jeverly as $key => $value) { ?>
             <section class="holiday item">
-                <a class="single_image" jevId="<?php echo $value['Jeverly']['id']; ?>" href="/system/Users/<?php echo $value['Jeverly']['userId']; ?>/<?php echo $value['Jeverly']['pic1']; ?>">
+                <a class="single_image" >
                     <div>
-                        <div class="item_hover">
+                        <div class="item_hover" jevId="<?php echo $value['Jeverly']['id']; ?>" >
                             <header>         
                                 <hgroup>
                                     <h2> цена $<?php echo $value['Jeverly']['price'] ?></h2>
@@ -175,9 +178,9 @@
                 </a>
             </section>
         <?php } ?>  
-        <div id="infscr-loading" style="display: block;"><img alt="Loading..." src="/images/loading.gif"><div><em>Пожалуста подаждите...</em></div></div>
+        <div id="infscr-loading" style="display: none;"><img alt="Loading..." src="/images/loading.gif"><div><em>Пожалуста подаждите...</em></div></div>
     </section><!-- end #content --> 
-    
+
 </div>  
 
 

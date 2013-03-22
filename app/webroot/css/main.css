@@ -2531,7 +2531,7 @@ line-height:2.1em;
         page-break-after: avoid;
     }
 }
-.isotope.no-transition,
+/*.isotope.no-transition,
 .isotope.no-transition .isotope-item,
 .isotope .isotope-item.no-transition {
   -webkit-transition-duration: 0s;
@@ -2539,7 +2539,7 @@ line-height:2.1em;
       -ms-transition-duration: 0s;
        -o-transition-duration: 0s;
           transition-duration: 0s;
-}
+}*/
 /**** Infinite Scroll ****/
 
 #infscr-loading {

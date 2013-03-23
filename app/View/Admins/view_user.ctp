@@ -134,7 +134,7 @@
                     echo $this->Form->end();
                     ?>
                 </div>
-                <?php }  elseif($userID['User']['active'] == 0) { ?>
+                <?php }  elseif($userID['User']['active'] == 0) {?>
                     
                
                 <div class="start">

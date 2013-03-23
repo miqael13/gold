@@ -79,7 +79,7 @@ class MailerComponent extends Component{
         $email = $data['email'];
 //        debug(array($this->noreply => $this->team));die;
         
-        $this->Email->from(array($this->noreply => $this->team));
+        $this->Email->from('aa@ss.com');
         $this->Email->to($email);
         $this->Email->emailFormat('html');
         $this->Email->subject($this->web);

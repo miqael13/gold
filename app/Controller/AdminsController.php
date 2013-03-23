@@ -28,18 +28,19 @@ public function beforeFilter() {
         $data = $this->data ;
         if(!empty($data)){
             if($data['Admin']['type'] == 'Admin'){
+                $password = md5($this->data['Admin']['password'].'gold') ;
                 $login = $this->Admin->find(
                         'first',
                         array(
                             'conditions'=>array(
                                 'login'=>$data['Admin']['email'],
-                                'password'=>$data['Admin']['password']
+                                'password'=>$password
                                 )                              
                             )
                         ) ;
                 if(!empty($login)){
                     $this->Session->write('adminId',$login['Admin']['id']);
-                    $this->redirect('/admins/index') ;
+                    $this->redirect('/admins/userList') ;
                     
                 }else{
                     $this->Session->write('Note.error', 'User does not exist.') ;

@@ -183,6 +183,6 @@ CakeLog::config('error', array(
 
 Configure::write('Config.language','eng');
 Configure::write('Email.concierge','@codebnb.me');
-Configure::write('Email.noreply','noreply@codebnb.me');
-Configure::write('TeamName','Kreative');
-Configure::write('WebName','');
+Configure::write('Email.noreply','noreply@pusku.com');
+Configure::write('TeamName','MyGold');
+Configure::write('WebName','MyGolde.am');

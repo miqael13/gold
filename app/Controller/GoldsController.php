@@ -63,8 +63,24 @@ class GoldsController extends AppController {
         exit;
     }
 
-    public function singleView() {
-        
+    public function singleView($id) {
+        $this->viewData['jeverly'] = $this->Jeverly->find('first', array(
+            'joins' => array(
+                array(
+                    'table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'LEFT',
+                    'foreignKey' => false,
+                    'conditions' => array(
+                        'Jeverly.userId = User.id',
+                    ),
+                ),
+            ),
+            'limit' => '10',
+            'order' => 'Jeverly.created DESC',
+            'conditions' => array('Jeverly.id' => $id),
+            'fields'=>array('Jeverly.* , User.*')
+                ));
     }
 
 }

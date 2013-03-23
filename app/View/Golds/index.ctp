@@ -17,7 +17,10 @@
         });
         return false;
     });	
-
+    $('.icons').live('click',function(){
+        var jevId = $(this).attr('jevId'); 
+        window.open('/golds/singleView/'+jevId);
+    });
     // Initialization istope       	
     jQuery(document).ready(function(jQuery) {
         var $container_isotope = jQuery('.portfolio');
@@ -129,7 +132,7 @@
                                         +' </hgroup>'
                                         +' </header>'
                                         +'</div>'
-                                        +'<div class="n38 icons"><span>`</span></div>'
+                                        +'<div class="n38 icons" jevId="'+val.Jeverly.id+'"><span>`</span></div>'
                                         +'<img src="/system/Users/'+val.Jeverly.userId+'/'+val.Jeverly.pic1+'" />'
                                         +'</div>'
                                         +' </a>'
@@ -175,7 +178,7 @@
                                 </hgroup>
                             </header>
                         </div>
-                        <div class="n38 icons"><span>`</span></div>
+                        <div class="n38 icons" jevId="<?php echo $value['Jeverly']['id']?>"><span>`</span></div>
                         <img src="/system/Users/<?php echo $value['Jeverly']['userId']; ?>/<?php echo $value['Jeverly']['pic1']; ?>" />
                     </div>
                 </a>

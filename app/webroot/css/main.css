@@ -1319,6 +1319,7 @@ section.respond .r_submit_button input:hover {
 .full_width .icons > div {
     overflow: hidden;
     clear: left;
+    cursor: pointer;
 }
 
 .full_width .icons > div div {
@@ -2181,10 +2182,12 @@ span.slidebutton:hover {
     right: -10px;
     background-color: #7bc830;
     color: #fff;
+    cursor: pointer;
 }
 
 .archives .icons span {
     display: block;
+    cursor: pointer;
 }
 
 .archives .item_hover p {
@@ -2196,6 +2199,7 @@ span.slidebutton:hover {
     display: block;
     padding: 5%;
     height: auto;
+    cursor: pointer;
 }
 
 .archives .item_hover header {

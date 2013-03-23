@@ -53,8 +53,8 @@
 
             // filter items when filter link is clicked
             $('#filters a').click(function(){
-                var selector = $(this).attr('data-filter');
-                $container_isotope.isotope({ filter: selector });
+//                var selector = $(this).attr('data-filter');
+                $container_isotope.isotope({ filter: '*' });
                 var $parent = $(this).parents("#filters");
 				  
                 $parent.find(".filter_on").removeClass('filter_on');
@@ -101,19 +101,24 @@
                 resizeItems();
 
             });
-            
+            var ajax = false;
             $(window).scroll(function(){
                 if  ($(window).scrollTop() == $(document).height() - $(window).height()){
                     var $newItem;
+                    if(ajax){
+                        return false;
+                    }
+                    ajax = true;
                     $.ajax({
                         url: '/golds/addIsotope/'+offset,
                         type: 'POST',
                         beforeSend:function(){$("#infscr-loading").show()},
                         dataType: 'json',
-                        success: function(data){                            
+                        success: function(data){   
+                            var w = $('.item').width();
                             if(data.status){
                                 $.each(data.jeverly,function(key,val){
-                                    var $newItem1 = '<section class="holiday item" >'
+                                    var $newItem1 = '<section class="holiday item" style="width:'+w+'px;">'
                                         +'<a class="single_image">'
                                         +'<div>'
                                         +'<div class="item_hover" jevId="'+val.Jeverly.id+'">'
@@ -133,16 +138,13 @@
                                 });
                                 var $newEls = $($newItem);
                                 $container_isotope.append( $newEls ).isotope( 'appended', $newEls );
-                                //                                $container_isotope.isotope( 'reloadItems' );
-                                resizeItems();
-                                //                                 $container_isotope.isotope( 'reloadItems' );
-                                //                                 resizeItems();
                                 offset++;
                                 $("#infscr-loading").hide('slow');
                             }else{
                                 $("#infscr-loading").hide('slow');
                                 return false;
-                            }                               
+                            }       
+                            ajax = false;
                         }
                     });
                   
@@ -157,7 +159,8 @@
 </script>
 
 <div id="wrap">    
-    <div style="width: 98%; background: #fff; height: 150px;margin: 1%;">
+    <div class="banner">
+        <p style="font-family: fantasy;font-size: 60px;">MyGold.am</p>
     </div>
     <section id="content" class="portfolio archives"> 
         <?php foreach ($jeverly as $key => $value) { ?>

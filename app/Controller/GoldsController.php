@@ -1,46 +1,72 @@
 <?php
+
 class GoldsController extends AppController {
-    
-    
-var $helpers = array('Html','Form','Session','Paginator');
-var $components = array('Session','Paginator');
-var $uses = array('Jeverly');
+
+    var $helpers = array('Html', 'Form', 'Session', 'Paginator');
+    var $components = array('Session', 'Paginator');
+    var $uses = array('Jeverly', 'User');
+
 //var $uses = array('Book','Basket');
 
 
-/* comment */
+    /* comment */
 
 
-    public function index(){
+    public function index() {
         $this->layout = "default";
-        $this->viewData['jeverly'] = $this->Jeverly->find('all',
+        $this->viewData['jeverly'] = $this->Jeverly->find('all', array(
+            'joins' => array(
                 array(
-                    'limit'=>'10',
-                    'order'=>'Jeverly.created DESC'
-                    ));
+                    'table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'LEFT',
+                    'foreignKey' => false,
+                    'conditions' => array(
+                        'Jeverly.userId = User.id',
+                    ),
+                ),
+            ),
+            'limit' => '10',
+            'order' => 'Jeverly.created DESC',
+            'conditions' => array('User.active' => 1)
+                ));
     }
-    public function pic($jevId){
+
+    public function pic($jevId) {
         $this->layout = false;
-        $this->viewData['jeverly'] = $this->Jeverly->find('first',array('conditions'=>array('id'=>$jevId)));
+        $this->viewData['jeverly'] = $this->Jeverly->find('first', array('conditions' => array('id' => $jevId)));
     }
-    public function addIsotope($offset){
-        $params['jeverly'] = $this->Jeverly->find('all',
+
+    public function addIsotope($offset) {
+        $params['jeverly'] = $this->Jeverly->find('all', array(
+            'joins' => array(
                 array(
-                    'limit'=> $offset.'0,10',
-                    'order'=>'Jeverly.created DESC'
-                    ));
-        if($params['jeverly']){
+                    'table' => 'users',
+                    'alias' => 'User',
+                    'type' => 'LEFT',
+                    'foreignKey' => false,
+                    'conditions' => array(
+                        'Jeverly.userId = User.id',
+                    ),
+                ),
+            ),
+            'limit' => $offset . '0,10',
+            'order' => 'Jeverly.created DESC',
+            'conditions' => array('User.active' => 1)
+                ));
+        if ($params['jeverly']) {
             $params['status'] = true;
-        }else{
+        } else {
             $params['status'] = false;
         }
         echo json_encode($params);
         exit;
     }
-    public function singleView(){
+
+    public function singleView() {
         
     }
- 
 
 }
+
 ?>

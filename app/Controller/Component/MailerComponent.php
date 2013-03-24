@@ -53,188 +53,47 @@ class MailerComponent extends Component{
      * @param array $data An array of user and profile data
      * @return bool Returns true if email is sent successfully, false otherwise
      */
-    public function userRegistrationEmail($data){
-        $user = $data['User'];
-        
-
-        $email = $user['email'];
-        $firstName = $user['first_name'];
-        $lastName = $user['last_name'];
-        $name = $firstName.' '.$lastName;
-
-        $this->Email->from($this->team.' <'.$this->noreply.'>');
-        $this->Email->bcc('Concierge <'.$this->concierge.'>');
-        $this->Email->to($name.' <'.$email.'>');
-        $this->Email->emailFormat('both');
-
-        $this->Email->subject('You have just registered at '.$this->web.'!');
-        $this->Email->template('registration');
-
-        $this->controller->set('contentForEmail','');
-
-        return $this->Email->send();
-    }
-    
     public function sendEmail($data){
         $email = $data['email'];
-//        debug(array($this->noreply => $this->team));die;
-        
-        $this->Email->from('aa@ss.com');
+        $this->Email->from(array($this->noreply => $this->team));
         $this->Email->to($email);
+        $this->Email->bcc(array('admin@mygold.pusku.com')) ;
         $this->Email->emailFormat('html');
         $this->Email->subject($this->web);
         $this->Email->template('sendUserEmail');
-        
         $this->Email->viewVars(array('User' => $data));
-       
         return $this->Email->send();
     }
     
-    public function sendEmailToAdmin($data){
-       // debug($data);
-        
-       $email = $data['toEmail'];
-       $fromEmail = $data['fromEmail'];
-        $subject = $data['subject'];
-        
-        $this->Email->from($fromEmail);
-        $this->Email->to($email);
-        $this->Email->emailFormat('both');
-        $this->Email->subject($subject);
-        $this->Email->template('sendEmailToAdmin');
-        
-        $this->Email->viewVars(array('data' => $data['content']));
-       
-        return $this->Email->send();
-    }
-    
-     public function passwordChange($data){
-     //  debug($data);die;
-        
-       $email = $data['email'];
-       
-        
+    public function sendEmailAdmin($data){
         $this->Email->from(array($this->noreply => $this->team));
-        $this->Email->to($email);
-        $this->Email->emailFormat('both');
-        $this->Email->subject('Your password has been changed');
-        $this->Email->template('passwordChange');
-        
-        $this->Email->viewVars(array('data' => $data));
-         return $this->Email->send();
-       
-     }
-    
-    public function sendEmailToAuthorOrg($data){
-       // debug($data);
-        
-       $email = $data['toEmail'];
-       $fromEmail = $data['fromEmail'];
-       // $subject = $data['subject'];
-        
-        $this->Email->from($fromEmail);
-        $this->Email->to($email);
-        $this->Email->emailFormat('both');
-        $this->Email->subject('Your '.$data['type'].' is active');
-        $this->Email->template('sendEmailToAuthorOrg');
-        
-        $this->Email->viewVars(array('contentForEmail' => $data));
-       
+        $this->Email->to(array('admin'.$this->concierge));
+        $this->Email->emailFormat('html');
+        $this->Email->subject($this->web.'!');
+        $this->Email->template('sendAdminEmail');
+        $this->Email->viewVars(array('Admin' => $data));
         return $this->Email->send();
     }
-    
-      public function sendEmailToAuthorMuni($data){
-       // debug($data);
-        
-       $email = $data['toEmail'];
-       $fromEmail = $data['fromEmail'];
-      // $subject = $data['subject'];
-        
-        $this->Email->from($fromEmail);
-        $this->Email->to($email);
-        $this->Email->emailFormat('both');
-        $this->Email->subject('Your '.$data['type'].' is active');
-        $this->Email->template('sendEmailToAuthorMuni');
-        
-        $this->Email->viewVars(array('contentForEmail' => $data));
-       
-        return $this->Email->send();
-    }
-    
-      public function sendEmailToModeratorOrg($data){
-//         debug($data);die;
-       
-       $email = $data['moderators'];
-      
+   
+    public function sendStopEmail($data){
+        $email = $data['email'] ;
         $this->Email->from(array($this->noreply => $this->team));
+        $this->Email->bcc(array('admin'.$this->concierge));
         $this->Email->to($email);
-        $this->Email->emailFormat('both');
-        $this->Email->subject('Editor has added new data');
-        $this->Email->template('sendEmailToModeratorOrg');
-        
-        $this->Email->viewVars(array('contentForEmail' => $data));
-       
+        $this->Email->emailFormat('html');
+        $this->Email->subject($this->web.'!');
+        $this->Email->template('sendStopEmail');
+        $this->Email->viewVars(array('User' => $data));
         return $this->Email->send();
-    }
-    
-     public function sendEmailToModeratorMuni($data){
-     //  debug($data);die;
-        
-       $email = $data['moderators'];
-      
+    } 
+    public function sendStopAdminEmail($data){
+//        debug($data);die;
         $this->Email->from(array($this->noreply => $this->team));
-        $this->Email->to($email);
-        $this->Email->emailFormat('both');
-        $this->Email->subject('Editor has added new data');
-        $this->Email->template('sendEmailToModeratorMuni');
-        
-        $this->Email->viewVars(array('contentForEmail' => $data));
-       
-        return $this->Email->send();
-    }
-     /**
-     * Sends an email to the user that have just registered
-     * @param array $data An array of user and profile data
-     * @return bool Returns true if email is sent successfully, false otherwise
-     */
-    public function userRegistrationEmail1($data){
-        //$user = $data['User'];
-        $user = $data;
-        $email = $user['email'];
-        $firstName = $user['firstName'];
-        $lastName = $user['lastName'];
-        $name = $firstName.' '.$lastName;
-        $this->Email->from(array($this->noreply => $this->team));
-        $this->Email->bcc(array($this->concierge => 'Concierge'));
-        $this->Email->to(array($email => $name));
-        $this->Email->emailFormat('both');
-
-        $this->Email->subject('You have just registered at '.$this->web.'!');
-        $this->Email->template('registration');
-
-        $this->Email->viewVars(array('contentForEmail' => $user));
-        return $this->Email->send();
-    }
-    
-    /**
-     * Sends an email to the user that want to recover his pass
-     * @param array $data An array of user and profile data
-     * @return bool Returns true if email is sent successfully, false otherwise
-     */
-    public function passwordRecovery($data){
-        $email = $data['email'];
-        $firstName = $data['firstName'];
-        $lastName = $data['lastName'];
-        $name = $firstName.' '.$lastName;
-        $this->Email->from(array($this->noreply => $this->team));
-        $this->Email->bcc(array($this->concierge => 'Concierge'));
-        $this->Email->to(array($email => $name));
-        $this->Email->emailFormat('both');
-
-        $this->Email->subject('You have requested password recovery at '.$this->web.'!');
-        $this->Email->template('passwordRecovery');
-
-        $this->Email->viewVars(array('contentForEmail' => $data));
+        $this->Email->to(array('admin'.$this->concierge));
+        $this->Email->emailFormat('html');
+        $this->Email->subject($this->web.'!');
+        $this->Email->template('sendStopAdminEmail');
+        $this->Email->viewVars(array('Admin' => $data));
         return $this->Email->send();
     } 
 }

@@ -140,9 +140,11 @@
                                     $newItem += $newItem1;                                    
                                 });
                                 var $newEls = $($newItem);
-                                $container_isotope.append( $newEls ).isotope( 'appended', $newEls );
-                                offset++;
-                                $("#infscr-loading").hide('slow');
+                                setTimeout(function(){
+                                    $container_isotope.append( $newEls ).isotope( 'appended', $newEls );
+                                    $("#infscr-loading").hide('slow');
+                                }, 10);                                
+                                offset++;                                
                             }else{
                                 $("#infscr-loading").hide('slow');
                                 return false;

@@ -75,11 +75,20 @@ class GoldsController extends AppController {
                         'Jeverly.userId = User.id',
                     ),
                 ),
+                array(
+                    'table' => 'stones',
+                    'alias' => 'Stone',
+                    'type' => 'LEFT',
+                    'foreignKey' => false,
+                    'conditions' => array(
+                        'Jeverly.stone = Stone.id',
+                    ),
+                ),
             ),
             'limit' => '10',
             'order' => 'Jeverly.created DESC',
             'conditions' => array('Jeverly.id' => $id),
-            'fields'=>array('Jeverly.* , User.*')
+            'fields'=>array('Jeverly.* , User.*','Stone.*')
                 ));
     }
 

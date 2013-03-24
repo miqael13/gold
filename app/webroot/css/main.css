@@ -2574,3 +2574,6 @@ only screen and (min-resolution: 144dpi) {
     border-radius: 10px;
     text-align: center;
 }
+ul{
+    list-style-type: none;
+}

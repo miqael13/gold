@@ -12,7 +12,18 @@
 
         <div class="work_left">
             <header>
-                <div class="alert alert_green">THIS IS GREEN ALERT BOX, PUT EVERYTHING HERE</div>
+                <div>
+                    <ul>
+                        <li>Цена : $<?php echo $jeverly['Jeverly']['price'] ?></li>
+                        <li>Вес : <?php echo $jeverly['Jeverly']['price'] ?>гр</li>
+                        <li>Камень : <?php if($jeverly['Jeverly']['stone']){ echo $jeverly['Stone']['title']; }else{ echo 'Без камня';} ?></li>
+                        <li>Тип : <?php echo $jeverly['Jeverly']['type'];?></li>
+                        <li>Где купить</li>
+                        <li>Аддресс : <?php echo $jeverly['User']['address'];?></li>
+                        <li>Павилион : <?php echo $jeverly['User']['pavilion'];?></li>
+                        <li>Телефон : <?php echo $jeverly['User']['phone'];?></li>                            
+                    </ul>
+                </div>
             </header>
         </div>
     </article><!-- end content -->

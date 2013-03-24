@@ -168,7 +168,7 @@ class CakeEmail {
  *
  * @var string
  */
-	protected $_layout = 'default';
+	protected $_layout = false;
 
 /**
  * Template for the view

@@ -123,13 +123,15 @@ public function beforeFilter() {
         $this->viewData['id'] = $id ;
         $this->viewData['category'] = $this->Category->find('all') ;
         $this->viewData['stone'] = $this->Stone->find('all') ;
-        if($UserId['User']['active'] == 1){
-            $endDate = $UserId['User']['endDate'] ;
-            $d = explode('-', $endDate);
-            $today  = mktime(0, 0, 0, date("m")  , date("d"), date("Y"));
-            $date1 = mktime (0,0,0,$d[1],$d[2],$d[0]);
-            $diff = ($date1-$today)/(3600*24);
-            $this->viewData['days'] = round($diff) ;
+        if($UserId['User']['endDate'] != NULL){
+            if($UserId['User']['active'] == 1){
+                $endDate = $UserId['User']['endDate'] ;
+                $d = explode('-', $endDate);
+                $today  = mktime(0, 0, 0, date("m")  , date("d"), date("Y"));
+                $date1 = mktime (0,0,0,$d[1],$d[2],$d[0]);
+                $diff = ($date1-$today)/(3600*24);
+                $this->viewData['days'] = round($diff) ;
+            }
         }
         $limit = 10 ;
         $this->paginate = array(

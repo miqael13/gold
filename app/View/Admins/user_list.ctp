@@ -29,7 +29,7 @@
                     <td><?php echo $value['User']['email'];?></td>
                     <td><?php echo $value['User']['phone'];?></td>
                     <td><?php echo $value['User']['limit'];?></td>
-                    <td><?php if(!empty($value['User']['start'])){echo 'Yes';}else{ echo 'No';} ?></td>
+                    <td><?php if($value['User']['active']){echo 'Yes';}else{ echo 'No';} ?></td>
                 
                     <td class="editMain"><a class="editBtn btnIcon" href="/admins/userEdit/<?php echo $value['User']['id']?>"></a></td>
                     <td class="delMain"><a onclick="return confirm('Are you sure?');" class="deleteBtn btnIcon" href="/admins/userDelete/<?php echo $value['User']['id']?>"></a></td>
